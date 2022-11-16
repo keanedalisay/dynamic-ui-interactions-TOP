@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/keanedalisay/dynamic-ui-interactions-TOP#readme",
   "devDependencies": {
+    "sass": "^1.56.1",
+    "sass-loader": "^13.2.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0"
   }
