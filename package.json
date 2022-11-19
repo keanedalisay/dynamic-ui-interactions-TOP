@@ -4,7 +4,11 @@
   "description": "A webpage to practice on coding elements like nav menu and image slider.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "builddev": "webpack --config webpack.dev.js",
+    "buildprod": "webpack --config webpack.prod.js",
+    "watchdev": "webpack --config webpack.dev.js",
+    "watchprod": "webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
