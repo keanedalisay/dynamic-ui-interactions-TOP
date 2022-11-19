@@ -1,0 +1,64 @@
+@font-face {
+  font-family: "Barabara";
+  src: url("assets/fonts/Barabara\ Regular.ttf");
+}
+@font-face {
+  font-family: "Bahnschrift";
+  src: url("assets/fonts/Bahnschrift.ttf");
+}
+
+:root {
+  --white: #ffffff;
+  --prim-black: #212121;
+  --silver: #c7c7c7;
+
+  --prim-text-color: var(--prim-black);
+
+  --nav-bar-shadow: var(--silver);
+  --nav-btn-bkgrd: var(--white);
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+html {
+  font-size: 10px;
+}
+
+.navBar {
+  width: 100%;
+  height: 8rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 0.1rem 0.4rem var(--nav-bar-shadow);
+}
+.navBar-logo {
+  height: 6rem;
+}
+.navBar-frame {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.navBar-btn {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: var(--nav-btn-bkgrd);
+  border: none;
+  font-family: "Barabara", "Bahnschrift", Helvetica, sans-serif;
+  color: var(--prim-text-color);
+
+  .drpdwnIcon {
+    width: 2rem;
+    height: 2rem;
+    transform: rotate(90deg);
+  }
+}
