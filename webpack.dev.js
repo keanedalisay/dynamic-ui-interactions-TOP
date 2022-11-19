@@ -9,7 +9,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].bundle.js",
-    assetModuleFilename: "assets/[name][ext]",
   },
   plugins: [new HTMLWebpackPLugin({ template: "./src/index.temp.html" })],
   module: {
@@ -18,8 +17,16 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
-      { test: /\.(png|svg|jpg|jpeg|gif)$/i, type: "asset/resource" },
-      { test: /\.(woff|woff2|eot|ttf|otf)$/i, type: "asset/resource" },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+        generator: { filename: "assets/imgs/[name][ext]" },
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: "asset/resource",
+        generator: { filename: "assets/fonts/[name][ext]" },
+      },
       {
         test: /\.html$/i,
         use: { loader: "html-loader", options: { minimize: false } },

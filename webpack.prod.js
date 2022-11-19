@@ -12,7 +12,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[hash].js",
-    assetModuleFilename: "assets/[name].[hash][ext]",
   },
   plugins: [
     new MiniCssExtractPlugin(),
@@ -25,8 +24,16 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
-      { test: /\.(png|svg|jpg|jpeg|gif)$/i, type: "asset/resource" },
-      { test: /\.(woff|woff2|eot|ttf|otf)$/i, type: "asset/resource" },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+        generator: { filename: "assets/img/[name].[hash][ext]" },
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: "asset/resource",
+        generator: { filename: "assets/fonts/[name].[hash][ext]" },
+      },
       { test: /\.html$/i, use: ["html-loader"] },
     ],
   },
