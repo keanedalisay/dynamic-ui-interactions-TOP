@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "builddev": "webpack --config webpack.dev.js",
     "buildprod": "webpack --config webpack.prod.js",
-    "watchdev": "webpack --config webpack.dev.js",
-    "watchprod": "webpack --config webpack.prod.js"
+    "watchdev": "webpack --watch --config webpack.dev.js",
+    "watchprod": "webpack --watch --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
