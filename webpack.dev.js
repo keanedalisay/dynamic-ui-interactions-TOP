@@ -9,6 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].bundle.js",
+    assetModuleFilename: "assets/[name][ext]",
   },
   plugins: [new HTMLWebpackPLugin({ template: "./src/index.temp.html" })],
   module: {

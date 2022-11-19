@@ -1,5 +1,7 @@
 const HTMLWebpackPLugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+
 const path = require("path");
 
 module.exports = {
@@ -9,11 +11,13 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].bundle.js",
+    filename: "[name].[hash].js",
+    assetModuleFilename: "assets/[name].[hash][ext]",
   },
   plugins: [
     new MiniCssExtractPlugin(),
     new HTMLWebpackPLugin({ template: "./src/index.temp.html" }),
+    new CleanWebpackPlugin(),
   ],
   module: {
     rules: [
