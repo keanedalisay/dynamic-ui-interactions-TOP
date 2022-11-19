@@ -5,13 +5,16 @@ const path = require("path");
 module.exports = {
   mode: "production",
   entry: {
-    index: [path.resolve(__dirname, "src/index.js")],
+    index: path.resolve(__dirname, "src/index.js"),
   },
   output: {
-    path: [path.resolve(__dirname, "dist")],
+    path: path.resolve(__dirname, "dist"),
     filename: "[name].bundle.js",
   },
-  plugins: [new MiniCssExtractPlugin(), new HTMLWebpackPLugin()],
+  plugins: [
+    new MiniCssExtractPlugin(),
+    new HTMLWebpackPLugin({ template: "./src/index.temp.html" }),
+  ],
   module: {
     rules: [
       {
