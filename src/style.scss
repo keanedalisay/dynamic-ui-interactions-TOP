@@ -29,6 +29,9 @@
 html {
   font-size: 10px;
 }
+object {
+  pointer-events: none;
+}
 
 .navBar {
   --nav-bar-shadow: var(--silver);
@@ -91,10 +94,20 @@ html {
   transform-origin: top;
 }
 
+.navBar-btn > span,
+.drpdwn-btn > span {
+  pointer-events: none;
+}
+
 .drpdwnIcon {
   width: 2rem;
   height: 2rem;
   transform: rotate(90deg);
+  transition: transform 275ms ease-in-out;
+}
+
+.drpdwnIcon-flip {
+  transform: rotate(-90deg);
 }
 
 .drpdwn {
@@ -122,7 +135,6 @@ html {
   height: 5rem;
   font-size: 1.2rem;
 }
-
 .drpdwn-btn::before {
   width: 80%;
   height: 0.4rem;
@@ -131,4 +143,8 @@ html {
 
 .drpdwn-collapse {
   max-height: 30rem;
+}
+
+.elem-hide {
+  display: none;
 }
