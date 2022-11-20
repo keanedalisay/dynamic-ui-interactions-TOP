@@ -12,12 +12,10 @@
   --prim-black: #212121;
   --silver: #c7c7c7;
   --fun-blue: #19519f;
+  --boston-blue: #4493c2;
+  --sushi: #73bf45;
 
   --prim-text-color: var(--prim-black);
-
-  --nav-bar-shadow: var(--silver);
-  --nav-btn-bkgrd: var(--white);
-  --nav-btn-pseudo-bkgrd: var(--fun-blue);
 }
 
 *,
@@ -33,6 +31,10 @@ html {
 }
 
 .navBar {
+  --nav-bar-shadow: var(--silver);
+  --nav-btn-bkgrd: var(--white);
+  --nav-btn-pseudo-bkgrd: var(--fun-blue);
+
   width: 100%;
   height: 8rem;
   display: flex;
@@ -48,7 +50,9 @@ html {
   display: flex;
   flex-flow: row nowrap;
 }
-.navBar-btn {
+
+.navBar-btn,
+.drpdwn-btn {
   width: 13rem;
   height: 6rem;
   margin: 0 0.5rem;
@@ -59,17 +63,14 @@ html {
   align-items: center;
   background: var(--nav-btn-bkgrd);
   border: none;
+  list-style: none;
   font-family: "Barabara", "Bahnschrift", Helvetica, sans-serif;
+  font-size: 1.4rem;
   color: var(--prim-text-color);
-
-  .drpdwnIcon {
-    width: 2rem;
-    height: 2rem;
-    transform: rotate(90deg);
-  }
 }
 
-.navBar-btn::before {
+.navBar-btn::before,
+.drpdwn-btn::before {
   content: "";
   width: 100%;
   height: 0.45rem;
@@ -82,8 +83,52 @@ html {
 }
 
 .navBar-btn:hover:before,
-.navBar-btn:focus:before {
+.navBar-btn:focus:before,
+.drpdwn-btn:hover:before,
+.drpdwn-btn:focus:before {
   outline: none;
   transform: scale(1) rotate(2deg);
   transform-origin: top;
+}
+
+.drpdwnIcon {
+  width: 2rem;
+  height: 2rem;
+  transform: rotate(90deg);
+}
+
+.drpdwn {
+  width: 100%;
+  max-height: 0;
+  padding-bottom: 1rem;
+  position: absolute;
+  top: 7rem;
+  background: var(--nav-btn-bkgrd);
+  box-shadow: 0 0.4rem 0.4rem var(--nav-bar-shadow);
+  list-style: none;
+  overflow: hidden;
+  transition: max-height 275ms ease-in-out;
+}
+
+.drpdwn--landscape {
+  --drpdwn-btn-pseudo-bkgrd: var(--sushi);
+}
+.drpdwn--seascape {
+  --drpdwn-btn-pseudo-bkgrd: var(--boston-blue);
+}
+
+.drpdwn-btn {
+  margin: 0;
+  height: 5rem;
+  font-size: 1.2rem;
+}
+
+.drpdwn-btn::before {
+  width: 80%;
+  height: 0.4rem;
+  background: var(--drpdwn-btn-pseudo-bkgrd);
+}
+
+.drpdwn-collapse {
+  max-height: 30rem;
 }
