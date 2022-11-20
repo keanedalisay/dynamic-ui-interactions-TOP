@@ -11,6 +11,7 @@
   --white: #ffffff;
   --prim-black: #212121;
   --silver: #c7c7c7;
+  --seashell: #f1f1f1;
   --fun-blue: #19519f;
   --boston-blue: #4493c2;
   --sushi: #73bf45;
@@ -36,6 +37,7 @@ object {
 .navBar {
   --nav-bar-shadow: var(--silver);
   --nav-btn-bkgrd: var(--white);
+  --nav-btn-hover-bkgrd: var(--seashell);
   --nav-btn-pseudo-bkgrd: var(--fun-blue);
 
   width: 100%;
@@ -84,7 +86,6 @@ object {
   transform-origin: bottom;
   transition: transform 275ms ease-in-out, transform-origin 275ms ease-in-out;
 }
-
 .navBar-btn:hover:before,
 .navBar-btn:focus:before,
 .drpdwn-btn:hover:before,
@@ -105,7 +106,6 @@ object {
   transform: rotate(90deg);
   transition: transform 275ms ease-in-out;
 }
-
 .drpdwnIcon-flip {
   transform: rotate(-90deg);
 }
@@ -121,6 +121,10 @@ object {
   list-style: none;
   overflow: hidden;
   transition: max-height 275ms ease-in-out;
+}
+
+.drpdwn-collapse {
+  max-height: 30rem;
 }
 
 .drpdwn--landscape {
@@ -141,8 +145,35 @@ object {
   background: var(--drpdwn-btn-pseudo-bkgrd);
 }
 
-.drpdwn-collapse {
-  max-height: 30rem;
+.navBar-menuBtn {
+  width: 5rem;
+  height: 5rem;
+  display: none;
+  background: var(--nav-btn-bkgrd);
+  border: none;
+}
+.navBar-menuBtn:hover,
+.navBar-menuBtn:focus {
+  background: var(--nav-btn-hover-bkgrd);
+}
+.menuIcon {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+@media screen and (max-width: 950px) {
+  .navBar {
+    padding: 0 2rem;
+    justify-content: space-between;
+  }
+  .navBar-frame {
+    display: none;
+  }
+  .navBar-menuBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .elem-hide {
