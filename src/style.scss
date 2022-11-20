@@ -161,18 +161,28 @@ object {
   height: 4.5rem;
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 800px) {
+  .navBar-btn--about {
+    display: none;
+  }
+  .navBar-btn--thoughts {
+    display: none;
+  }
+
+  .navBar-menuBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 620px) {
   .navBar {
     padding: 0 2rem;
     justify-content: space-between;
   }
   .navBar-frame {
     display: none;
-  }
-  .navBar-menuBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 
