@@ -34,7 +34,20 @@ object {
   pointer-events: none;
 }
 
+.overlay {
+  --overlay-bkgrd: var(--seashell);
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.9;
+  background-color: var(--overlay-bkgrd);
+}
+
 .navBar {
+  --nav-bar-bkgrd: var(--white);
   --nav-bar-shadow: var(--silver);
   --nav-btn-bkgrd: var(--white);
   --nav-btn-hover-bkgrd: var(--seashell);
@@ -46,9 +59,11 @@ object {
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
+  background: var(--nav-bar-bkgrd);
   box-shadow: 0 0.1rem 0.4rem var(--nav-bar-shadow);
 }
-.navBar-logo {
+.navBar-logo,
+.navMenu-logo {
   height: 6rem;
 }
 .navBar-frame {
@@ -159,6 +174,71 @@ object {
 .menuIcon {
   width: 4.5rem;
   height: 4.5rem;
+}
+
+.navMenu {
+  --nav-menu-bkgrd: var(--white);
+  --nav-menu-shadow: var(--silver);
+  --nav-btn-bkgrd: var(--white);
+  --nav-btn-hover-bkgrd: var(--seashell);
+
+  width: min(80vw, 30rem);
+  height: 100vh;
+  padding: 2rem 1rem;
+  position: fixed;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  background: var(--nav-menu-bkgrd);
+  box-shadow: 0rem 0 0.4rem var(--nav-menu-shadow);
+}
+.navMenu-logo {
+  width: 18.85rem;
+}
+.navMenu-frame {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.navMenu-closeBtn {
+  padding: 0.8rem;
+  position: absolute;
+  top: 1.5rem;
+  right: -4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: 0.45rem solid transparent;
+  border-radius: 5rem;
+}
+
+.navMenu-closeBtn:hover,
+.navMenu-closeBtn:focus {
+  border-color: var(--fun-blue);
+}
+
+.navMenu-btn {
+  margin: 0.5rem 0;
+  height: 4rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--nav-btn-bkgrd);
+  border: none;
+  list-style: none;
+  font-family: "Barabara", "Bahnschrift", Helvetica, sans-serif;
+  font-size: 1.4rem;
+  color: var(--prim-text-color);
+
+  .drpdwnIcon {
+    margin-left: 0.5rem;
+  }
+}
+.navMenu-btn:hover,
+.navMenu-btn:focus {
+  background: var(--nav-btn-hover-bkgrd);
 }
 
 @media screen and (max-width: 800px) {
