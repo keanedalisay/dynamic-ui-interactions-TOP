@@ -8,6 +8,11 @@ const delegateEvent = (event, elem, slctr, helper) => {
 
 const Page = {
   $: {
+    overlay: document.querySelector("[data-page=overlay]"),
+    navMenu: document.querySelector("[data-page=navMenu]"),
+    navMenuOpenBtn: document.querySelector("[data-page=navMenuOpenBtn]"),
+    navMenuCloseBtn: document.querySelector("[data-page=navMenuCloseBtn]"),
+
     navBtnFrame: document.querySelector("[data-page=navBtnFrame]"),
 
     toggleDropdown(elem) {
@@ -26,6 +31,29 @@ const Page = {
         dropdown.classList.contains("drpdwn-collapse") ? 0 : 20
       );
     },
+
+    toggleOverlay() {
+      setTimeout(
+        () => Page.$.overlay.classList.toggle("elem-hide"),
+        Page.$.overlay.classList.contains("elem-hide") ? 0 : 276
+      );
+      setTimeout(
+        () => Page.$.overlay.classList.toggle("overlay-fade-in"),
+        Page.$.overlay.classList.contains("overlay-fade-in") ? 0 : 20
+      );
+    },
+
+    toggleNavMenu() {
+      Page.$.toggleOverlay();
+      setTimeout(
+        () => Page.$.navMenu.classList.toggle("elem-hide"),
+        Page.$.navMenu.classList.contains("elem-hide") ? 0 : 276
+      );
+      setTimeout(
+        () => Page.$.navMenu.classList.toggle("navMenu-slide-right"),
+        Page.$.navMenu.classList.contains("navMenu-slide-right") ? 0 : 20
+      );
+    },
   },
 
   init() {
@@ -35,6 +63,10 @@ const Page = {
       ".navBar-btn",
       Page.$.toggleDropdown
     );
+
+    Page.$.overlay.addEventListener("click", Page.$.toggleNavMenu);
+    Page.$.navMenuOpenBtn.addEventListener("click", Page.$.toggleNavMenu);
+    Page.$.navMenuCloseBtn.addEventListener("click", Page.$.toggleNavMenu);
   },
 };
 
