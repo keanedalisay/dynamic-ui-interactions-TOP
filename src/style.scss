@@ -42,8 +42,12 @@ object {
   right: 0;
   bottom: 0;
   left: 0;
-  opacity: 0.9;
+  opacity: 0;
   background-color: var(--overlay-bkgrd);
+  transition: opacity 275ms ease-in-out;
+}
+.overlay-fade-in {
+  opacity: 0.9;
 }
 
 .navBar {
@@ -182,6 +186,7 @@ object {
   --nav-btn-bkgrd: var(--white);
   --nav-btn-hover-bkgrd: var(--seashell);
 
+  margin-left: -100vw;
   width: min(80vw, 30rem);
   height: 100vh;
   padding: 2rem 1rem;
@@ -191,7 +196,12 @@ object {
   align-items: center;
   background: var(--nav-menu-bkgrd);
   box-shadow: 0rem 0 0.4rem var(--nav-menu-shadow);
+  transition: margin-left 275ms ease-in-out;
 }
+.navMenu-slide-right {
+  margin-left: 0;
+}
+
 .navMenu-logo {
   width: 18.85rem;
 }
@@ -211,6 +221,7 @@ object {
   background: transparent;
   border: 0.45rem solid transparent;
   border-radius: 5rem;
+  transition: border 275ms ease-in-out;
 }
 
 .navMenu-closeBtn:hover,
