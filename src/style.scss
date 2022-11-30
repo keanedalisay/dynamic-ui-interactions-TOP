@@ -13,6 +13,7 @@
   --silver: #c7c7c7;
   --seashell: #f1f1f1;
   --fun-blue: #19519f;
+  --fun-blue-op02: #19519f3b;
   --boston-blue: #4493c2;
   --sushi: #73bf45;
 
@@ -116,17 +117,20 @@ object {
 }
 
 .navBar-btn > span,
+.navMenu-btn > span,
 .drpdwn-btn > span {
   pointer-events: none;
 }
 
-.drpdwnIcon {
+.drpdwnIcon,
+.accrdIcon {
   width: 2rem;
   height: 2rem;
   transform: rotate(90deg);
   transition: transform 275ms ease-in-out;
 }
-.drpdwnIcon-flip {
+.drpdwnIcon-flip,
+.accrdIcon-flip {
   transform: rotate(-90deg);
 }
 
@@ -199,6 +203,8 @@ object {
   box-shadow: 0rem 0 0.4rem var(--nav-menu-shadow);
   transition: margin-left 275ms ease-in-out;
   z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .navMenu-slide-right {
   margin-left: 0;
@@ -245,13 +251,48 @@ object {
   font-size: 1.4rem;
   color: var(--prim-text-color);
 
-  .drpdwnIcon {
+  .accrdIcon {
     margin-left: 0.5rem;
   }
 }
 .navMenu-btn:hover,
 .navMenu-btn:focus {
   background: var(--nav-btn-hover-bkgrd);
+}
+
+.accrd {
+  --accrd-btn-hover-bdr: var(--silver);
+
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  background: var(--nav-menu-bkgrd);
+  list-style: none;
+}
+
+.accrd--landscape {
+  --accrd-btn-hover-bdr: var(--sushi);
+}
+.accrd--seascape {
+  --accrd-btn-hover-bdr: var(--fun-blue);
+}
+
+.accrd-btn {
+  width: 90%;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Barabara", "Bahnschrift", Helvetica, sans-serif;
+  font-size: 1.2rem;
+  color: var(--prim-text-color);
+}
+
+.accrd-btn:hover,
+.accrd-btn:focus {
+  background: var(--nav-btn-hover-bkgrd);
+  border: 0.1rem solid var(--accrd-btn-hover-bdr);
 }
 
 @media screen and (max-width: 800px) {
@@ -283,6 +324,13 @@ object {
   }
   .navBar-frame {
     display: none;
+  }
+
+  .navMenu-btn--landscape {
+    display: flex;
+  }
+  .navMenu-btn--seascape {
+    display: flex;
   }
 }
 
