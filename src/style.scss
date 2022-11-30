@@ -45,6 +45,7 @@ object {
   opacity: 0;
   background-color: var(--overlay-bkgrd);
   transition: opacity 275ms ease-in-out;
+  z-index: 1;
 }
 .overlay-fade-in {
   opacity: 0.9;
@@ -197,6 +198,7 @@ object {
   background: var(--nav-menu-bkgrd);
   box-shadow: 0rem 0 0.4rem var(--nav-menu-shadow);
   transition: margin-left 275ms ease-in-out;
+  z-index: 1;
 }
 .navMenu-slide-right {
   margin-left: 0;
@@ -264,6 +266,13 @@ object {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .navMenu-btn--landscape {
+    display: none;
+  }
+  .navMenu-btn--seascape {
+    display: none;
   }
 }
 
