@@ -64,8 +64,23 @@ const Page = {
       );
     },
 
+    toggleNavMenuCloseBtn() {
+      setTimeout(
+        () => Page.$.navMenuCloseBtn.classList.toggle("elem-hide"),
+        Page.$.navMenuCloseBtn.classList.contains("elem-hide") ? 0 : 276
+      );
+      setTimeout(
+        () =>
+          Page.$.navMenuCloseBtn.classList.toggle("navMenu-closeBtn-fade-in"),
+        Page.$.navMenuCloseBtn.classList.contains("navMenu-closeBtn-fade-in")
+          ? 0
+          : 20
+      );
+    },
+
     toggleNavMenu() {
       Page.$.toggleOverlay();
+      Page.$.toggleNavMenuCloseBtn();
       setTimeout(
         () => Page.$.navMenu.classList.toggle("elem-hide"),
         Page.$.navMenu.classList.contains("elem-hide") ? 0 : 276

@@ -185,6 +185,12 @@ object {
   height: 4.5rem;
 }
 
+.navMenuContainer {
+  width: min(80vw, 30rem);
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+}
 .navMenu {
   --nav-menu-bkgrd: var(--white);
   --nav-menu-shadow: var(--silver);
@@ -192,10 +198,9 @@ object {
   --nav-btn-hover-bkgrd: var(--seashell);
 
   margin-left: -100vw;
-  width: min(80vw, 30rem);
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   padding: 2rem 1rem;
-  position: fixed;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -222,19 +227,26 @@ object {
   padding: 0.8rem;
   position: absolute;
   top: 1.5rem;
-  right: -4.5rem;
+  left: min(80vw, 30rem);
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
   background: transparent;
   border: 0.45rem solid transparent;
   border-radius: 5rem;
-  transition: border 275ms ease-in-out;
+
+  transition: border 275ms ease-in-out, opacity 275ms ease-in-out;
+  z-index: 2;
 }
 
 .navMenu-closeBtn:hover,
 .navMenu-closeBtn:focus {
   border-color: var(--fun-blue);
+}
+
+.navMenu-closeBtn-fade-in {
+  opacity: 1;
 }
 
 .navMenu-btn {
