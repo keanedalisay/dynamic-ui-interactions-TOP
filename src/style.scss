@@ -264,11 +264,14 @@ object {
   --accrd-btn-hover-bdr: var(--silver);
 
   width: 100%;
+  max-height: 0;
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   align-items: center;
   background: var(--nav-menu-bkgrd);
   list-style: none;
+  overflow: hidden;
+  transition: max-height 275ms ease-in-out;
 }
 
 .accrd--landscape {
@@ -276,6 +279,10 @@ object {
 }
 .accrd--seascape {
   --accrd-btn-hover-bdr: var(--fun-blue);
+}
+
+.accrd-collapse {
+  max-height: 30rem;
 }
 
 .accrd-btn {
@@ -286,6 +293,7 @@ object {
   align-items: center;
   font-family: "Barabara", "Bahnschrift", Helvetica, sans-serif;
   font-size: 1.2rem;
+  background: var(--nav-btn-bkgrd);
   color: var(--prim-text-color);
 }
 

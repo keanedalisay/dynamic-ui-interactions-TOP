@@ -12,6 +12,11 @@ const Page = {
     navMenu: document.querySelector("[data-page=navMenu]"),
     navMenuOpenBtn: document.querySelector("[data-page=navMenuOpenBtn]"),
     navMenuCloseBtn: document.querySelector("[data-page=navMenuCloseBtn]"),
+    navMenuBtnLndscpe: document.querySelector("[data-page=navMenuBtnLndscpe]"),
+    navMenuBtnSeascpe: document.querySelector("[data-page=navMenuBtnSeascpe]"),
+
+    accrdLndscpe: document.querySelector("[data-page=accrdLndscpe]"),
+    accrdSeascpe: document.querySelector("[data-page=accrdSeascpe]"),
 
     navBtnFrame: document.querySelector("[data-page=navBtnFrame]"),
 
@@ -29,6 +34,22 @@ const Page = {
       setTimeout(
         () => dropdown.classList.toggle("drpdwn-collapse"),
         dropdown.classList.contains("drpdwn-collapse") ? 0 : 20
+      );
+    },
+
+    toggleAccrd(btn, accrd) {
+      if (!btn) return;
+
+      const accrdIcon = btn.querySelector(".accrdIcon");
+      accrdIcon.classList.toggle("accrdIcon-flip");
+
+      setTimeout(
+        () => accrd.classList.toggle("elem-hide"),
+        accrd.classList.contains("elem-hide") ? 0 : 276
+      );
+      setTimeout(
+        () => accrd.classList.toggle("accrd-collapse"),
+        accrd.classList.contains("accrd-collapse") ? 0 : 20
       );
     },
 
@@ -67,6 +88,13 @@ const Page = {
     Page.$.overlay.addEventListener("click", Page.$.toggleNavMenu);
     Page.$.navMenuOpenBtn.addEventListener("click", Page.$.toggleNavMenu);
     Page.$.navMenuCloseBtn.addEventListener("click", Page.$.toggleNavMenu);
+
+    Page.$.navMenuBtnLndscpe.addEventListener("click", (e) => {
+      Page.$.toggleAccrd(e.target, Page.$.accrdLndscpe);
+    });
+    Page.$.navMenuBtnSeascpe.addEventListener("click", (e) => {
+      Page.$.toggleAccrd(e.target, Page.$.accrdSeascpe);
+    });
   },
 };
 
