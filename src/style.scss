@@ -140,10 +140,10 @@ object {
   position: absolute;
   top: 7rem;
   background: var(--nav-btn-bkgrd);
-  box-shadow: 0 0.4rem 0.4rem var(--nav-bar-shadow);
   list-style: none;
   overflow: hidden;
   transition: max-height 275ms ease-in-out;
+  z-index: 1;
 }
 
 .drpdwn-collapse {
