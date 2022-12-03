@@ -110,6 +110,21 @@ const Page = {
       Page.$.sliderFrame.classList.remove("sliderFrame-slide");
     },
 
+    slideBackToEnd() {
+      Page.$.removeSliderAnim();
+
+      const endImg = document.querySelector("[data-imgindex='5']");
+      const startImg = document.querySelector("[data-imgindex='0']");
+
+      endImg.dataset.imgactive = "true";
+      startImg.dataset.imgactive = "";
+
+      Slider.currentImgIndex = 5;
+      Page.$.sliderFrame.style.marginLeft = `-${
+        Slider.imgWidth * Slider.currentImgIndex
+      }px`;
+    },
+
     slideBackToStart() {
       Page.$.removeSliderAnim();
 
@@ -125,6 +140,31 @@ const Page = {
       }px`;
 
       setTimeout(Page.$.addSliderAnim, 500);
+    },
+
+    slideToLeftImg() {
+      Page.$.addSliderAnim();
+
+      Slider.getCurrentImgIndex(Page.$.sliderImgs);
+      const newLeftMarginVal = Slider.imgWidth * (Slider.currentImgIndex - 1);
+      Page.$.sliderFrame.style.marginLeft = `-${newLeftMarginVal}px`;
+
+      const currentImg = document.querySelector(
+        `[data-imgindex="${Slider.currentImgIndex}"]`
+      );
+      const prevImg = document.querySelector(
+        `[data-imgindex="${Slider.currentImgIndex - 1}"]`
+      );
+
+      currentImg.dataset.imgactive = "";
+      prevImg.dataset.imgactive = "true";
+
+      Slider.currentLeftMargin = newLeftMarginVal;
+      Slider.currentImgIndex -= 1;
+
+      if (Slider.currentImgIndex === 0) {
+        setTimeout(Page.$.slideBackToEnd, 500);
+      }
     },
 
     slideToRightImg() {
@@ -172,6 +212,7 @@ const Page = {
       Page.$.toggleAccrd(e.target, Page.$.accrdSeascpe);
     });
 
+    Page.$.slideToLeftImgBtn.addEventListener("click", Page.$.slideToLeftImg);
     Page.$.slideToRightImgBtn.addEventListener("click", Page.$.slideToRightImg);
 
     ["resize", "DOMContentLoaded"].forEach((event) => {
