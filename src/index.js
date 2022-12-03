@@ -115,6 +115,22 @@ const Page = {
     Page.$.sliderFrame.classList.remove("sliderFrame-slide");
   },
 
+  styleSliderImgBtn(imgIndex) {
+    let imageIdx = imgIndex;
+
+    if (imgIndex <= 0) imageIdx = 5;
+    else if (imgIndex >= 6) imageIdx = 1;
+
+    Page.$.slideToImgBtns.forEach((btn) => {
+      if (btn.classList.contains("imgSlider-slideToImgBtn-active"))
+        btn.classList.remove("imgSlider-slideToImgBtn-active");
+    });
+
+    const targetBtn = document.querySelector(`[data-btnindex="${imageIdx}"]`);
+
+    targetBtn.classList.add("imgSlider-slideToImgBtn-active");
+  },
+
   slideBackToEnd() {
     Page.removeSliderAnim();
 
@@ -194,6 +210,8 @@ const Page = {
     Slider.currentLeftMargin = newLeftMarginVal;
     Slider.currentImgIndex -= 1;
 
+    Page.styleSliderImgBtn(Slider.currentImgIndex);
+
     if (Slider.currentImgIndex === 0) {
       setTimeout(Page.slideBackToEnd, 500);
     }
@@ -218,6 +236,8 @@ const Page = {
 
     Slider.currentLeftMargin = newLeftMarginVal;
     Slider.currentImgIndex += 1;
+
+    Page.styleSliderImgBtn(Slider.currentImgIndex);
 
     if (Slider.currentImgIndex === 6) {
       setTimeout(Page.slideBackToStart, 500);
