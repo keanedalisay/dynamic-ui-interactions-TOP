@@ -26,6 +26,10 @@ const Page = {
 
     sliderFrame: document.querySelector("[data-page=sliderFrame]"),
     sliderImgs: document.querySelectorAll("[data-page=sliderImg]"),
+    slideToLeftImgBtn: document.querySelector("[data-page=slideToLeftImgBtn]"),
+    slideToRightImgBtn: document.querySelector(
+      "[data-page=slideToRightImgBtn]"
+    ),
 
     toggleDropdown(elem) {
       const dropdown = elem.querySelector(".drpdwn");
@@ -98,6 +102,55 @@ const Page = {
         Page.$.navMenuFrame.classList.contains("navMenu-slide-right") ? 0 : 20
       );
     },
+
+    addSliderAnim() {
+      Page.$.sliderFrame.classList.add("sliderFrame-slide");
+    },
+    removeSliderAnim() {
+      Page.$.sliderFrame.classList.remove("sliderFrame-slide");
+    },
+
+    slideBackToStart() {
+      Page.$.removeSliderAnim();
+
+      const startImg = document.querySelector("[data-imgindex='1']");
+      const endImg = document.querySelector("[data-imgindex='6']");
+
+      startImg.dataset.imgactive = "true";
+      endImg.dataset.imgactive = "";
+
+      Slider.currentImgIndex = 1;
+      Page.$.sliderFrame.style.marginLeft = `-${
+        Slider.imgWidth * Slider.currentImgIndex
+      }px`;
+
+      setTimeout(Page.$.addSliderAnim, 500);
+    },
+
+    slideToRightImg() {
+      Page.$.addSliderAnim();
+
+      Slider.getCurrentImgIndex(Page.$.sliderImgs);
+      const newLeftMarginVal = Slider.imgWidth * (Slider.currentImgIndex + 1);
+      Page.$.sliderFrame.style.marginLeft = `-${newLeftMarginVal}px`;
+
+      const currentImg = document.querySelector(
+        `[data-imgindex="${Slider.currentImgIndex}"]`
+      );
+      const nextImg = document.querySelector(
+        `[data-imgindex="${Slider.currentImgIndex + 1}"]`
+      );
+
+      currentImg.dataset.imgactive = "";
+      nextImg.dataset.imgactive = "true";
+
+      Slider.currentLeftMargin = newLeftMarginVal;
+      Slider.currentImgIndex += 1;
+
+      if (Slider.currentImgIndex === 6) {
+        setTimeout(Page.$.slideBackToStart, 500);
+      }
+    },
   },
 
   init() {
@@ -119,11 +172,16 @@ const Page = {
       Page.$.toggleAccrd(e.target, Page.$.accrdSeascpe);
     });
 
+    Page.$.slideToRightImgBtn.addEventListener("click", Page.$.slideToRightImg);
+
     ["resize", "DOMContentLoaded"].forEach((event) => {
       window.addEventListener(event, () => {
         Slider.getTotalImgCount(Page.$.sliderImgs);
-        Slider.totalImgWidth = Slider.imgWidth * Slider.totalImgCount;
-        Page.$.sliderFrame.style = `width: ${Slider.totalImgWidth}px`;
+        Slider.getTotalImgWidth();
+        Slider.getCurrentLeftMargin();
+        Page.$.removeSliderAnim();
+        Page.$.sliderFrame.style.width = `${Slider.totalImgWidth}px`;
+        Page.$.sliderFrame.style.marginLeft = `-${Slider.currentLeftMargin}px`;
       });
     });
   },

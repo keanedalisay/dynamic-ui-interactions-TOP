@@ -361,12 +361,16 @@ object {
   width: 100%;
   height: min(50rem, 75vw);
   position: relative;
+  overflow: hidden;
 }
 .sliderFrame {
   height: 100%;
 }
+.sliderFrame-slide {
+  transition: margin-left 500ms ease-in-out;
+}
 .imgSlider-img {
-  margin-right: -0.4rem;
+  margin-right: -0.25rem;
   width: 100vw;
   height: 100%;
   object-fit: cover;
