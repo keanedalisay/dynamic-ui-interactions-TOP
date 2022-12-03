@@ -13,7 +13,6 @@
   --silver: #c7c7c7;
   --seashell: #f1f1f1;
   --fun-blue: #19519f;
-  --fun-blue-op02: #19519f3b;
   --boston-blue: #4493c2;
   --sushi: #73bf45;
 
@@ -351,6 +350,111 @@ object {
   }
   .navMenu-btn--seascape {
     display: flex;
+  }
+}
+
+.imgSlider {
+  --slide-drction-btn-bkgrd: var(--prim-black);
+  --slide-to-img-btn-bkgrd: var(--white);
+
+  width: 100%;
+  height: min(50rem, 75vw);
+  position: relative;
+}
+.sliderFrame {
+  width: 1000rem;
+  height: 100%;
+}
+.imgSlider-img {
+  margin-right: -0.4rem;
+  width: 100vw;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imgSlider-slideDrctionBtn {
+  width: 8rem;
+  height: 8rem;
+  position: absolute;
+  top: 45%;
+  opacity: 0.5;
+  background: var(--slide-drction-btn-bkgrd);
+  border: none;
+  border-radius: 5rem;
+  transition: opacity 275ms ease-in-out;
+}
+.imgSlider-slideDrctionBtn:hover,
+.imgSlider-slideDrctionBtn:focus {
+  opacity: 1;
+  cursor: pointer;
+}
+.imgSlider-slideDrctionBtn--left {
+  left: max(2rem, 3vw);
+}
+.imgSlider-slideDrctionBtn--right {
+  right: max(2rem, 3vw);
+}
+.imgSlider-slideDrctionBtn > object {
+  width: 8rem;
+  height: 8rem;
+}
+.imgSlider-slideDrctionBtn--right > object {
+  transform: rotate(180deg);
+}
+
+.slideToImgBtnFrame {
+  width: 18rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.imgSlider-slideToImgBtn {
+  width: 1.2rem;
+  height: 1.2rem;
+  background: var(--slide-to-img-btn-bkgrd);
+  border: none;
+  border-radius: 5rem;
+}
+.imgSlider-slideToImgBtn:hover,
+.imgSlider-slideToImgBtn:focus {
+  background: var(--fun-blue);
+  cursor: pointer;
+}
+.imgSlider-slideToImgBtn-active {
+  background: var(--fun-blue);
+}
+
+@media screen and (max-width: 520px) {
+  .imgSlider-slideDrctionBtn {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .imgSlider-slideDrctionBtn > object {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .imgSlider-slideToImgBtn {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .imgSlider-slideDrctionBtn {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .imgSlider-slideDrctionBtn > object {
+    width: 5rem;
+    height: 5rem;
   }
 }
 
