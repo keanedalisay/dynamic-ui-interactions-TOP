@@ -9,6 +9,7 @@ const delegateEvent = (event, elem, slctr, helper) => {
 const Page = {
   $: {
     overlay: document.querySelector("[data-page=overlay]"),
+    navMenuFrame: document.querySelector("[data-page=navMenuFrame]"),
     navMenu: document.querySelector("[data-page=navMenu]"),
     navMenuOpenBtn: document.querySelector("[data-page=navMenuOpenBtn]"),
     navMenuCloseBtn: document.querySelector("[data-page=navMenuCloseBtn]"),
@@ -81,13 +82,14 @@ const Page = {
     toggleNavMenu() {
       Page.$.toggleOverlay();
       Page.$.toggleNavMenuCloseBtn();
+
       setTimeout(
         () => Page.$.navMenu.classList.toggle("elem-hide"),
         Page.$.navMenu.classList.contains("elem-hide") ? 0 : 276
       );
       setTimeout(
-        () => Page.$.navMenu.classList.toggle("navMenu-slide-right"),
-        Page.$.navMenu.classList.contains("navMenu-slide-right") ? 0 : 20
+        () => Page.$.navMenuFrame.classList.toggle("navMenu-slide-right"),
+        Page.$.navMenuFrame.classList.contains("navMenu-slide-right") ? 0 : 20
       );
     },
   },
