@@ -1,10 +1,13 @@
 import "./style.scss";
+import SliderTemp from "./slider";
 
 const delegateEvent = (event, elem, slctr, helper) => {
   elem.addEventListener(event, (e) => {
     if (e.target.matches(slctr)) helper(e.target);
   });
 };
+
+const Slider = new SliderTemp();
 
 const Page = {
   $: {
@@ -20,6 +23,9 @@ const Page = {
     accrdSeascpe: document.querySelector("[data-page=accrdSeascpe]"),
 
     navBtnFrame: document.querySelector("[data-page=navBtnFrame]"),
+
+    sliderFrame: document.querySelector("[data-page=sliderFrame]"),
+    sliderImgs: document.querySelectorAll("[data-page=sliderImg]"),
 
     toggleDropdown(elem) {
       const dropdown = elem.querySelector(".drpdwn");
@@ -111,6 +117,14 @@ const Page = {
     });
     Page.$.navMenuBtnSeascpe.addEventListener("click", (e) => {
       Page.$.toggleAccrd(e.target, Page.$.accrdSeascpe);
+    });
+
+    ["resize", "DOMContentLoaded"].forEach((event) => {
+      window.addEventListener(event, () => {
+        Slider.getTotalImgCount(Page.$.sliderImgs);
+        Slider.totalImgWidth = Slider.imgWidth * Slider.totalImgCount;
+        Page.$.sliderFrame.style = `width: ${Slider.totalImgWidth}px`;
+      });
     });
   },
 };
