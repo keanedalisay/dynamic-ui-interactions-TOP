@@ -30,6 +30,11 @@ const Page = {
     slideToRightImgBtn: document.querySelector(
       "[data-page=slideToRightImgBtn]"
     ),
+
+    slideToImgBtnFrame: document.querySelector(
+      "[data-page=slideToImgBtnFrame]"
+    ),
+    slideToImgBtns: document.querySelectorAll("[data-page=slideToImgBtn]"),
   },
 
   toggleDropdown(elem) {
@@ -142,6 +147,33 @@ const Page = {
     setTimeout(Page.$.addSliderAnim, 500);
   },
 
+  slideToImgIndex(slideToImgBtn) {
+    Page.addSliderAnim();
+
+    Page.$.slideToImgBtns.forEach((btn) => {
+      if (btn.classList.contains("imgSlider-slideToImgBtn-active"))
+        btn.classList.remove("imgSlider-slideToImgBtn-active");
+    });
+
+    slideToImgBtn.classList.add("imgSlider-slideToImgBtn-active");
+
+    const imgIndex = slideToImgBtn.dataset.btnindex;
+    Slider.getCurrentImgIndex(Page.$.sliderImgs);
+    const currentImg = document.querySelector(
+      `[data-imgindex="${Slider.currentImgIndex}"]`
+    );
+    const indexImg = document.querySelector(`[data-imgindex="${imgIndex}"]`);
+
+    currentImg.dataset.imgactive = "";
+    indexImg.dataset.imgactive = "true";
+
+    const newLeftMarginVal = Slider.imgWidth * imgIndex;
+    Page.$.sliderFrame.style.marginLeft = `-${newLeftMarginVal}px`;
+
+    Slider.currentLeftMargin = newLeftMarginVal;
+    Slider.currentImgIndex = imgIndex;
+  },
+
   slideToLeftImg() {
     Page.addSliderAnim();
 
@@ -198,6 +230,13 @@ const Page = {
       Page.$.navBtnFrame,
       ".navBar-btn",
       Page.toggleDropdown
+    );
+
+    delegateEvent(
+      "click",
+      Page.$.slideToImgBtnFrame,
+      "[data-page=slideToImgBtn]",
+      Page.slideToImgIndex
     );
 
     Page.$.overlay.addEventListener("click", Page.toggleNavMenu);
