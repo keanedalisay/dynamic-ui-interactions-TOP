@@ -3,7 +3,7 @@ import SliderTemp from "./slider";
 
 const delegateEvent = (event, elem, slctr, helper) => {
   elem.addEventListener(event, (e) => {
-    if (e.target.matches(slctr)) helper(e.target);
+    if (e.target.matches(slctr)) helper(e);
   });
 };
 
@@ -37,11 +37,11 @@ const Page = {
     slideToImgBtns: document.querySelectorAll("[data-page=slideToImgBtn]"),
   },
 
-  toggleDropdown(elem) {
-    const dropdown = elem.querySelector(".drpdwn");
+  toggleDropdown(e) {
+    const dropdown = e.target.querySelector(".drpdwn");
     if (!dropdown) return;
 
-    const dropdownIcon = elem.querySelector(".drpdwnIcon");
+    const dropdownIcon = e.target.querySelector(".drpdwnIcon");
     dropdownIcon.classList.toggle("drpdwnIcon-flip");
 
     setTimeout(
@@ -163,8 +163,10 @@ const Page = {
     setTimeout(Page.$.addSliderAnim, 500);
   },
 
-  slideToImgIndex(slideToImgBtn) {
+  slideToImgIndex(e) {
     Page.addSliderAnim();
+
+    const slideToImgBtn = e.target;
 
     Page.$.slideToImgBtns.forEach((btn) => {
       if (btn.classList.contains("imgSlider-slideToImgBtn-active"))
