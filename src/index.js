@@ -166,6 +166,14 @@ const Page = {
   slideToImgIndex(e) {
     Page.addSliderAnim();
 
+    if (e) {
+      Slider.clearSliderInterval(Slider.sliderInterval);
+      Slider.clearSliderTimeout();
+      Slider.sliderTimeout = setTimeout(() => {
+        Slider.setSliderInterval(Page.slideToRightImg, 2000);
+      }, 5000);
+    }
+
     const slideToImgBtn = e.target;
 
     Page.$.slideToImgBtns.forEach((btn) => {
@@ -192,8 +200,16 @@ const Page = {
     Slider.currentImgIndex = imgIndex;
   },
 
-  slideToLeftImg() {
+  slideToLeftImg(e) {
     Page.addSliderAnim();
+
+    if (e) {
+      Slider.clearSliderInterval(Slider.sliderInterval);
+      Slider.clearSliderTimeout();
+      Slider.sliderTimeout = setTimeout(() => {
+        Slider.setSliderInterval(Page.slideToRightImg, 2000);
+      }, 5000);
+    }
 
     Slider.getCurrentImgIndex(Page.$.sliderImgs);
     const newLeftMarginVal = Slider.imgWidth * (Slider.currentImgIndex - 1);
@@ -219,8 +235,16 @@ const Page = {
     }
   },
 
-  slideToRightImg() {
+  slideToRightImg(e) {
     Page.addSliderAnim();
+
+    if (e) {
+      Slider.clearSliderInterval(Slider.sliderInterval);
+      Slider.clearSliderTimeout();
+      Slider.sliderTimeout = setTimeout(() => {
+        Slider.setSliderInterval(Page.slideToRightImg, 2000);
+      }, 5000);
+    }
 
     Slider.getCurrentImgIndex(Page.$.sliderImgs);
     const newLeftMarginVal = Slider.imgWidth * (Slider.currentImgIndex + 1);
@@ -274,6 +298,8 @@ const Page = {
 
     Page.$.slideToLeftImgBtn.addEventListener("click", Page.slideToLeftImg);
     Page.$.slideToRightImgBtn.addEventListener("click", Page.slideToRightImg);
+
+    Slider.setSliderInterval(Page.slideToRightImg, 2000);
 
     ["resize", "DOMContentLoaded"].forEach((event) => {
       window.addEventListener(event, () => {

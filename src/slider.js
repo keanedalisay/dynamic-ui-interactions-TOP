@@ -5,6 +5,9 @@ class SliderTemp {
     this.totalImgWidth = 0;
     this.currentImgIndex = 1;
     this.currentLeftMargin = 0;
+
+    this.sliderTimeout = 0;
+    this.sliderInterval = 0;
   }
 
   getImgWidth(img) {
@@ -37,6 +40,18 @@ class SliderTemp {
 
   getCurrentLeftMargin() {
     this.currentLeftMargin = this.imgWidth * this.currentImgIndex;
+  }
+
+  clearSliderTimeout() {
+    clearTimeout(this.sliderTimeout);
+  }
+
+  setSliderInterval(func, interval) {
+    this.sliderInterval = setInterval(func, interval);
+  }
+
+  clearSliderInterval() {
+    clearInterval(this.sliderInterval);
   }
 }
 export default SliderTemp;
