@@ -11,11 +11,14 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].[hash].js",
+    filename: "[name].[contenthash].js",
   },
   plugins: [
-    new MiniCssExtractPlugin(),
-    new HTMLWebpackPLugin({ template: "./src/index.temp.html" }),
+    new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
+    new HTMLWebpackPLugin({
+      filename: "[name].[contenthash].html",
+      template: "./src/index.temp.html",
+    }),
     new CleanWebpackPlugin(),
   ],
   module: {
@@ -25,14 +28,14 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
         type: "asset/resource",
-        generator: { filename: "assets/img/[name].[hash][ext]" },
+        generator: { filename: "assets/img/[name].[contenthash][ext]" },
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
-        generator: { filename: "assets/fonts/[name].[hash][ext]" },
+        generator: { filename: "assets/fonts/[name].[contenthash][ext]" },
       },
       { test: /\.html$/i, use: ["html-loader"] },
     ],
